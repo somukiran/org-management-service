@@ -4,14 +4,14 @@ A multi-tenant backend service for managing organizations with dynamic MongoDB c
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-- [Setup Instructions](#setup-instructions)
-- [API Documentation](#api-documentation)
-- [Design Choices](#design-choices)
-- [Trade-offs & Scalability](#trade-offs--scalability)
+- [Overview](#Overview)
+- [Architecture](#Architecture)
+- [Tech Stack](#Tech-stack)
+- [Features](#Features)
+- [Setup Instructions](#Setup-Instructions)
+- [API Documentation](#API-Documentation)
+- [Design Choices](#Design-Choices)
+- [Trade-offs & Scalability](#Trade-offs--Scalability)
 
 ---
 
