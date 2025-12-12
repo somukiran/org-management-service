@@ -29,37 +29,37 @@ This service implements a multi-tenant architecture where:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                              CLIENT APPLICATIONS                             │
+│                              CLIENT APPLICATIONS                            │
 │                        (Web App, Mobile App, etc.)                          │
 └─────────────────────────────────────────────────────────────────────────────┘
                                       │
                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          FASTAPI APPLICATION                                 │
+│                          FASTAPI APPLICATION                                │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────────────┐  │
 │  │   API Routes    │  │   Services      │  │   Core                      │  │
 │  │  ┌───────────┐  │  │  ┌───────────┐  │  │  ┌─────────┐ ┌───────────┐  │  │
 │  │  │ /org/*    │  │  │  │ Org       │  │  │  │ Config  │ │ Security  │  │  │
 │  │  │ /admin/*  │  │  │  │ Service   │  │  │  │         │ │ (JWT/Hash)│  │  │
 │  │  └───────────┘  │  │  ├───────────┤  │  │  └─────────┘ └───────────┘  │  │
-│  │  ┌───────────┐  │  │  │ Auth      │  │  └─────────────────────────────┘  │
-│  │  │Dependencies│  │  │  │ Service   │  │                                   │
-│  │  │ (Auth)    │  │  │  └───────────┘  │                                   │
-│  │  └───────────┘  │  └─────────────────┘                                   │
-│  └─────────────────┘                                                         │
+│  │  ┌────────────┐ │  │  │ Auth      │  │  └─────────────────────────────┘  │
+│  │  │Dependencies│ │  │  │ Service   │  │                                   │
+│  │  │ (Auth)     │ │  │  └───────────┘  │                                   │
+│  │  └────────────┘ │  └─────────────────┘                                   │
+│  └─────────────────┘                                                        │
 └─────────────────────────────────────────────────────────────────────────────┘
                                       │
                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          DATABASE MANAGER                                    │
-│                     (Connection Pool & Operations)                           │
+│                          DATABASE MANAGER                                   │
+│                     (Connection Pool & Operations)                          │
 └─────────────────────────────────────────────────────────────────────────────┘
                                       │
                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                              MONGODB                                         │
+│                              MONGODB                                        │
 │  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                      MASTER DATABASE                                 │    │
+│  │                      MASTER DATABASE                                │    │
 │  │  ┌─────────────────┐        ┌─────────────────┐                     │    │
 │  │  │  organizations  │        │   admin_users   │                     │    │
 │  │  │  Collection     │        │   Collection    │                     │    │
@@ -69,9 +69,9 @@ This service implements a multi-tenant architecture where:
 │  │  │  - created_at   │        │  - role         │                     │    │
 │  │  └─────────────────┘        └─────────────────┘                     │    │
 │  └─────────────────────────────────────────────────────────────────────┘    │
-│                                                                              │
+│                                                                             │
 │  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                 DYNAMIC ORGANIZATION COLLECTIONS                     │    │
+│  │                 DYNAMIC ORGANIZATION COLLECTIONS                    │    │
 │  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐               │    │
 │  │  │  org_acme    │  │  org_beta    │  │  org_gamma   │    ...        │    │
 │  │  │  Collection  │  │  Collection  │  │  Collection  │               │    │
@@ -84,20 +84,20 @@ This service implements a multi-tenant architecture where:
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **FastAPI** | Web framework - async, high performance, auto-docs |
-| **MongoDB** | NoSQL database - flexible schema, scalable |
-| **Motor** | Async MongoDB driver for Python |
-| **Pydantic** | Data validation and settings management |
-| **python-jose** | JWT token encoding/decoding |
-| **passlib + bcrypt** | Secure password hashing |
-| **Docker** | Containerization |
-| **pytest** | Testing framework |
+| Technology       | Purpose                                            |
+|------------------|----------------------------------------------------|
+| FastAPI          | Web framework - async, high performance, auto-docs |
+| MongoDB          | NoSQL database - flexible schema, scalable         |
+| Motor            | Async MongoDB driver for Python                    |
+| Pydantic         | Data validation and settings management            |
+| python-jose      | JWT token encoding/decoding                        |
+| passlib + bcrypt | Secure password hashing                            |
+| Docker           | Containerization                                   |
+| pytest           | Testing framework                                  |
 
 ---
 
-## ✨ Features
+##  Features
 
 - ✅ **Organization CRUD Operations** - Create, read, update, delete organizations
 - ✅ **Dynamic Collection Creation** - Each org gets isolated MongoDB collection
@@ -109,7 +109,7 @@ This service implements a multi-tenant architecture where:
 
 ---
 
-## 🚀 Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites
 
@@ -161,18 +161,18 @@ pytest tests/ -v
 
 ---
 
-## 📚 API Documentation
+##  API Documentation
 
 ### Endpoints
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/org/create` | Create organization | No |
-| `GET` | `/org/get?organization_name=` | Get organization | No |
-| `PUT` | `/org/update?current_org_name=` | Update organization | Yes |
-| `DELETE` | `/org/delete?organization_name=` | Delete organization | Yes |
-| `POST` | `/admin/login` | Admin login | No |
-| `GET` | `/admin/me` | Get current admin | Yes |
+| Method   | Endpoint                         | Description         | Auth |
+|----------|----------------------------------|---------------------|------|
+| `POST`   | `/org/create`                    | Create organization |  No  |
+| `GET`    | `/org/get?organization_name=`    | Get organization    |  No  |
+| `PUT`    | `/org/update?current_org_name=`  | Update organization |  Yes |
+| `DELETE` | `/org/delete?organization_name=` | Delete organization |  Yes |
+| `POST`   | `/admin/login`                   | Admin login         |  No  |
+| `GET`    | `/admin/me`                      | Get current admin   |  Yes |
 
 ### Example Usage
 
@@ -233,78 +233,9 @@ curl -X DELETE "http://localhost:8000/org/delete?organization_name=acme_corp" \
 
 ### Current Limitations
 
-| Issue | Impact |
-|-------|--------|
-| Many collections | MongoDB connection overhead |
-| No cross-org queries | Analytics difficult |
-| Per-collection indexes | Maintenance overhead |
+|         Issue          |          Impact             |
+|------------------------|-----------------------------|
+| Many collections       | MongoDB connection overhead |
+| No cross-org queries   | Analytics difficult         |
+| Per-collection indexes | Maintenance overhead        |
 
-### Better Alternatives for Scale
-
-**Option A: Single Collection + Tenant ID**
-```
-┌──────────────────────────────────┐
-│     all_organizations_data       │
-│  - tenant_id (indexed)           │
-│  - data                          │
-└──────────────────────────────────┘
-```
-- Pros: Easier management, cross-tenant queries
-- Cons: Less isolation, needs careful access control
-
-**Option B: Database-per-Tenant**
-```
-┌────────────┐ ┌────────────┐ ┌────────────┐
-│ org_acme_db│ │org_beta_db │ │org_gamma_db│
-└────────────┘ └────────────┘ └────────────┘
-```
-- Pros: Complete isolation, independent scaling
-- Cons: Higher operational cost
-
-### Recommended Improvements
-
-1. Add **Redis caching** for frequent queries
-2. Implement **rate limiting** 
-3. Add **audit logging**
-4. Set up **MongoDB replica set**
-5. Add **Prometheus metrics**
-
----
-
-## 📁 Project Structure
-
-```
-org-management-service/
-├── app/
-│   ├── main.py              # FastAPI entry point
-│   ├── api/
-│   │   ├── dependencies.py  # Auth dependencies
-│   │   └── routes/
-│   │       ├── organization.py
-│   │       └── admin.py
-│   ├── core/
-│   │   ├── config.py        # Settings
-│   │   └── security.py      # JWT & hashing
-│   ├── db/
-│   │   └── database.py      # MongoDB manager
-│   ├── schemas/
-│   │   └── schemas.py       # Pydantic models
-│   └── services/
-│       ├── organization_service.py
-│       └── auth_service.py
-├── tests/
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 📄 License
-
-MIT License
-
----
-
-**Time Spent:** ~3 hours
