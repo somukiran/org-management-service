@@ -6,7 +6,7 @@ A multi-tenant backend service for managing organizations with dynamic MongoDB c
 
 - [Overview](#Overview)
 - [Architecture](#Architecture)
-- [Tech Stack](#Tech-stack)
+- [Tech Stack](#Tech-Stack)
 - [Features](#Features)
 - [Setup Instructions](#Setup-Instructions)
 - [API Documentation](#API-Documentation)
